@@ -1,0 +1,19 @@
+E:\mmlab\mmlab\bin\Debug\mmlab.exe
+E:\mmlab\mmlab\bin\Debug\mmlab.pdb
+E:\mmlab\mmlab\obj\x86\Debug\mmlab.Form1.resources
+E:\mmlab\mmlab\obj\x86\Debug\mmlab.Properties.Resources.resources
+E:\mmlab\mmlab\obj\x86\Debug\mmlab.exe
+E:\mmlab\mmlab\obj\x86\Debug\mmlab.pdb
+E:\mmlab\mmlab\obj\x86\Debug\mmlab.csprojAssemblyReference.cache
+E:\mmlab\mmlab\obj\x86\Debug\mmlab.csproj.GenerateResource.cache
+E:\mmlab\mmlab\obj\x86\Debug\mmlab.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Dropbox\AIU\2018 1\MM\mmlab\mmlab\bin\Debug\mmlab.exe
+C:\Users\ASUS\Dropbox\AIU\2018 1\MM\mmlab\mmlab\bin\Debug\mmlab.pdb
+C:\Users\ASUS\Dropbox\AIU\2018 1\MM\mmlab\mmlab\obj\x86\Debug\mmlab.csprojAssemblyReference.cache
+C:\Users\ASUS\Dropbox\AIU\2018 1\MM\mmlab\mmlab\obj\x86\Debug\mmlab.Form1.resources
+C:\Users\ASUS\Dropbox\AIU\2018 1\MM\mmlab\mmlab\obj\x86\Debug\mmlab.Properties.Resources.resources
+C:\Users\ASUS\Dropbox\AIU\2018 1\MM\mmlab\mmlab\obj\x86\Debug\mmlab.csproj.GenerateResource.cache
+C:\Users\ASUS\Dropbox\AIU\2018 1\MM\mmlab\mmlab\obj\x86\Debug\mmlab.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Dropbox\AIU\2018 1\MM\mmlab\mmlab\obj\x86\Debug\mmlab.exe
+C:\Users\ASUS\Dropbox\AIU\2018 1\MM\mmlab\mmlab\obj\x86\Debug\mmlab.pdb
+C:\Users\ASUS\Dropbox\AIU\2018 1\MM\mmlab\mmlab\obj\x86\Debug\mmlab.Form2.resources
