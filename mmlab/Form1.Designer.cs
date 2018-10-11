@@ -35,6 +35,9 @@
             this.operationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blueImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.greenImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restoreOriginalImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.brightenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorBox = new System.Windows.Forms.PictureBox();
@@ -42,9 +45,7 @@
             this.lblImgWidth = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblImgHeight = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblImgPixelFormat = new System.Windows.Forms.ToolStripStatusLabel();
-            this.blueImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.greenImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.restoreOriginalImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grayImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.colorBox)).BeginInit();
@@ -110,6 +111,7 @@
             this.redImageToolStripMenuItem,
             this.blueImageToolStripMenuItem,
             this.greenImageToolStripMenuItem,
+            this.grayImageToolStripMenuItem,
             this.restoreOriginalImageToolStripMenuItem});
             this.extractToolStripMenuItem.Name = "extractToolStripMenuItem";
             this.extractToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
@@ -118,9 +120,30 @@
             // redImageToolStripMenuItem
             // 
             this.redImageToolStripMenuItem.Name = "redImageToolStripMenuItem";
-            this.redImageToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.redImageToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
             this.redImageToolStripMenuItem.Text = "Red image";
             this.redImageToolStripMenuItem.Click += new System.EventHandler(this.redImageToolStripMenuItem_Click);
+            // 
+            // blueImageToolStripMenuItem
+            // 
+            this.blueImageToolStripMenuItem.Name = "blueImageToolStripMenuItem";
+            this.blueImageToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.blueImageToolStripMenuItem.Text = "Blue image";
+            this.blueImageToolStripMenuItem.Click += new System.EventHandler(this.blueImageToolStripMenuItem_Click);
+            // 
+            // greenImageToolStripMenuItem
+            // 
+            this.greenImageToolStripMenuItem.Name = "greenImageToolStripMenuItem";
+            this.greenImageToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.greenImageToolStripMenuItem.Text = "Green image";
+            this.greenImageToolStripMenuItem.Click += new System.EventHandler(this.greenImageToolStripMenuItem_Click);
+            // 
+            // restoreOriginalImageToolStripMenuItem
+            // 
+            this.restoreOriginalImageToolStripMenuItem.Name = "restoreOriginalImageToolStripMenuItem";
+            this.restoreOriginalImageToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.restoreOriginalImageToolStripMenuItem.Text = "Restore original image";
+            this.restoreOriginalImageToolStripMenuItem.Click += new System.EventHandler(this.restoreOriginalImageToolStripMenuItem_Click);
             // 
             // lightingToolStripMenuItem
             // 
@@ -177,26 +200,12 @@
             this.lblImgPixelFormat.Name = "lblImgPixelFormat";
             this.lblImgPixelFormat.Size = new System.Drawing.Size(0, 20);
             // 
-            // blueImageToolStripMenuItem
+            // grayImageToolStripMenuItem
             // 
-            this.blueImageToolStripMenuItem.Name = "blueImageToolStripMenuItem";
-            this.blueImageToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.blueImageToolStripMenuItem.Text = "Blue image";
-            this.blueImageToolStripMenuItem.Click += new System.EventHandler(this.blueImageToolStripMenuItem_Click);
-            // 
-            // greenImageToolStripMenuItem
-            // 
-            this.greenImageToolStripMenuItem.Name = "greenImageToolStripMenuItem";
-            this.greenImageToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.greenImageToolStripMenuItem.Text = "Green image";
-            this.greenImageToolStripMenuItem.Click += new System.EventHandler(this.greenImageToolStripMenuItem_Click);
-            // 
-            // restoreOriginalImageToolStripMenuItem
-            // 
-            this.restoreOriginalImageToolStripMenuItem.Name = "restoreOriginalImageToolStripMenuItem";
-            this.restoreOriginalImageToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
-            this.restoreOriginalImageToolStripMenuItem.Text = "Restore original image";
-            this.restoreOriginalImageToolStripMenuItem.Click += new System.EventHandler(this.restoreOriginalImageToolStripMenuItem_Click);
+            this.grayImageToolStripMenuItem.Name = "grayImageToolStripMenuItem";
+            this.grayImageToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.grayImageToolStripMenuItem.Text = "Gray image";
+            this.grayImageToolStripMenuItem.Click += new System.EventHandler(this.grayImageToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -242,6 +251,7 @@
         private System.Windows.Forms.ToolStripMenuItem blueImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem greenImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restoreOriginalImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem grayImageToolStripMenuItem;
     }
 }
 

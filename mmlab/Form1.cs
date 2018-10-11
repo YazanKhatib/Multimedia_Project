@@ -148,6 +148,23 @@ namespace mmlab
             picBoxMain.Image = current; 
         }
 
+        private void grayImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (current == null)
+                return;
+            for (int i = 0; i < current.Width; i++)
+            {
+                for (int j = 0; j < current.Height; j++)
+                {
+                    Color c = current.GetPixel(i, j);
+                    double value = (c.R + c.G + c.B) / 3; 
+                    Color newC = Color.FromArgb((int)value, (int)value, (int)value);
+                    current.SetPixel(i, j, newC);
+                }
+            }
+            picBoxMain.Image = current;
+        }
+
         private void greenImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (current == null)
