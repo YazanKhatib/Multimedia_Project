@@ -165,6 +165,48 @@ namespace mmlab
             picBoxMain.Image = current;
         }
 
+        private void addColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog d = new ColorDialog();
+            if (d.ShowDialog() == DialogResult.Cancel)
+                return;
+            Color uc = d.Color;
+            for (int i = 0; i < current.Width; i++)
+            {
+                for (int j = 0; j < current.Height; j++)
+                {
+                    Color c = current.GetPixel(i, j);
+                    byte r = (byte)((uc.R) + c.R / 2);
+                    byte g = (byte)((uc.G) + c.G / 2);
+                    byte b = (byte)((uc.B) + c.B / 2);
+                    Color newC = Color.FromArgb(r, g, b);
+                    current.SetPixel(i, j, newC);
+                }
+            }
+            picBoxMain.Image = current;
+        }
+
+        private void flipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void horizontalFlipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (current == null)
+                return;
+            current.RotateFlip(RotateFlipType.Rotate180FlipY);
+            picBoxMain.Image = current;
+        }
+
+        private void verticalFlipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (current == null)
+                return;
+            current.RotateFlip(RotateFlipType.Rotate180FlipX);
+            picBoxMain.Image = current;
+        }
+
         private void greenImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (current == null)

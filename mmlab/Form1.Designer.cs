@@ -37,15 +37,21 @@
             this.redImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blueImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.greenImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grayImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreOriginalImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.brightenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorBox = new System.Windows.Forms.PictureBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblImgWidth = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblImgHeight = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblImgPixelFormat = new System.Windows.Forms.ToolStripStatusLabel();
-            this.grayImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.flipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizontalFlipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verticalFlipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.colorBox)).BeginInit();
@@ -73,7 +79,9 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.operationsToolStripMenuItem});
+            this.operationsToolStripMenuItem,
+            this.colorToolStripMenuItem,
+            this.flipToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -114,7 +122,7 @@
             this.grayImageToolStripMenuItem,
             this.restoreOriginalImageToolStripMenuItem});
             this.extractToolStripMenuItem.Name = "extractToolStripMenuItem";
-            this.extractToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.extractToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
             this.extractToolStripMenuItem.Text = "Extract";
             // 
             // redImageToolStripMenuItem
@@ -138,6 +146,13 @@
             this.greenImageToolStripMenuItem.Text = "Green image";
             this.greenImageToolStripMenuItem.Click += new System.EventHandler(this.greenImageToolStripMenuItem_Click);
             // 
+            // grayImageToolStripMenuItem
+            // 
+            this.grayImageToolStripMenuItem.Name = "grayImageToolStripMenuItem";
+            this.grayImageToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.grayImageToolStripMenuItem.Text = "Gray image";
+            this.grayImageToolStripMenuItem.Click += new System.EventHandler(this.grayImageToolStripMenuItem_Click);
+            // 
             // restoreOriginalImageToolStripMenuItem
             // 
             this.restoreOriginalImageToolStripMenuItem.Name = "restoreOriginalImageToolStripMenuItem";
@@ -150,7 +165,7 @@
             this.lightingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.brightenToolStripMenuItem});
             this.lightingToolStripMenuItem.Name = "lightingToolStripMenuItem";
-            this.lightingToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.lightingToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
             this.lightingToolStripMenuItem.Text = "Lighting";
             // 
             // brightenToolStripMenuItem
@@ -159,6 +174,21 @@
             this.brightenToolStripMenuItem.Size = new System.Drawing.Size(140, 26);
             this.brightenToolStripMenuItem.Text = "Brighten";
             this.brightenToolStripMenuItem.Click += new System.EventHandler(this.brightenToolStripMenuItem_Click);
+            // 
+            // colorToolStripMenuItem
+            // 
+            this.colorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addColorToolStripMenuItem});
+            this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
+            this.colorToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
+            this.colorToolStripMenuItem.Text = "Color";
+            // 
+            // addColorToolStripMenuItem
+            // 
+            this.addColorToolStripMenuItem.Name = "addColorToolStripMenuItem";
+            this.addColorToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.addColorToolStripMenuItem.Text = "Add Color";
+            this.addColorToolStripMenuItem.Click += new System.EventHandler(this.addColorToolStripMenuItem_Click);
             // 
             // colorBox
             // 
@@ -200,12 +230,29 @@
             this.lblImgPixelFormat.Name = "lblImgPixelFormat";
             this.lblImgPixelFormat.Size = new System.Drawing.Size(0, 20);
             // 
-            // grayImageToolStripMenuItem
+            // flipToolStripMenuItem
             // 
-            this.grayImageToolStripMenuItem.Name = "grayImageToolStripMenuItem";
-            this.grayImageToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
-            this.grayImageToolStripMenuItem.Text = "Gray image";
-            this.grayImageToolStripMenuItem.Click += new System.EventHandler(this.grayImageToolStripMenuItem_Click);
+            this.flipToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.horizontalFlipToolStripMenuItem,
+            this.verticalFlipToolStripMenuItem});
+            this.flipToolStripMenuItem.Name = "flipToolStripMenuItem";
+            this.flipToolStripMenuItem.Size = new System.Drawing.Size(45, 24);
+            this.flipToolStripMenuItem.Text = "Flip";
+            this.flipToolStripMenuItem.Click += new System.EventHandler(this.flipToolStripMenuItem_Click);
+            // 
+            // horizontalFlipToolStripMenuItem
+            // 
+            this.horizontalFlipToolStripMenuItem.Name = "horizontalFlipToolStripMenuItem";
+            this.horizontalFlipToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.horizontalFlipToolStripMenuItem.Text = "Horizontal Flip";
+            this.horizontalFlipToolStripMenuItem.Click += new System.EventHandler(this.horizontalFlipToolStripMenuItem_Click);
+            // 
+            // verticalFlipToolStripMenuItem
+            // 
+            this.verticalFlipToolStripMenuItem.Name = "verticalFlipToolStripMenuItem";
+            this.verticalFlipToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.verticalFlipToolStripMenuItem.Text = "Vertical Flip";
+            this.verticalFlipToolStripMenuItem.Click += new System.EventHandler(this.verticalFlipToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -252,6 +299,12 @@
         private System.Windows.Forms.ToolStripMenuItem greenImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restoreOriginalImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem grayImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem colorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addColorToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ToolStripMenuItem flipToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem horizontalFlipToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verticalFlipToolStripMenuItem;
     }
 }
 
