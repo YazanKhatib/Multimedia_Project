@@ -20,7 +20,7 @@ namespace mmlab
         }
 
         Bitmap current, b;
-        OpenFileDialog dialog;
+        OpenFileDialog dialog, dialog2; 
         private void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dialog = new OpenFileDialog();
@@ -85,6 +85,7 @@ namespace mmlab
 
         private void brightenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             if (current == null)
                 return;
             Form2 f2 = new Form2();
@@ -106,6 +107,7 @@ namespace mmlab
                 }
             }
             picBoxMain.Image = current;
+            
         }
 
         private void picBoxMain_Click(object sender, EventArgs e)
@@ -180,7 +182,7 @@ namespace mmlab
                     }
                     picBoxMain.Image = current;
                     */
-                }
+        }
 
         private void addColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -210,31 +212,70 @@ namespace mmlab
 
         private void horizontalFlipToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
+            if (current == null)
+                return;
+            for (int i = 0; i < current.Height; i++)
+            {
+                for (int j = 0; j < current.Width/2; j++)
+                {
+                    if (j == 0) continue;
+                    Color c = current.GetPixel(j,i);
+                    Color cc = current.GetPixel(current.Width - j,i); 
+                    current.SetPixel(current.Width - j, i, c);
+                    current.SetPixel(j, i, cc);
+                }
+            }
+
+            picBoxMain.Image = current;
+
+            
+            /*
             if (current == null)
                 return;
             current.RotateFlip(RotateFlipType.Rotate180FlipY);
             picBoxMain.Image = current;
+            
+            */
+
         }
 
         private void verticalFlipToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (current == null)
                 return;
+            for (int i = 0; i < current.Width; i++)
+            {
+                for (int j = 0; j < current.Height / 2; j++)
+                {
+                    if (j == 0) continue;
+                    Color c = current.GetPixel(i, j);
+                    Color cc = current.GetPixel(i, current.Height - j);
+                    current.SetPixel(i, current.Height - j, c);
+                    current.SetPixel(i, j, cc);
+                }
+            }
+
+            picBoxMain.Image = current;
+            /*
+            if (current == null)
+                return;
             current.RotateFlip(RotateFlipType.Rotate180FlipX);
             picBoxMain.Image = current;
+            */
         }
 
         private void loadImageToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            dialog = new OpenFileDialog();
-            dialog.Title = "Choose image file";
-            dialog.Filter = "JPG files|*.jpg|JPEG files|*.jpeg";
-            var res = dialog.ShowDialog();
+            dialog2 = new OpenFileDialog();
+            dialog2.Title = "Choose image file";
+            dialog2.Filter = "JPG files|*.jpg|JPEG files|*.jpeg";
+            var res = dialog2.ShowDialog();
             if (res == DialogResult.Cancel)
                 return;
 
             Bitmap temp; 
-            temp = new Bitmap(dialog.FileName);
+            temp = new Bitmap(dialog2.FileName);
             temp = resizeImage(temp, current.Width, current.Height); 
             for (int i = 0; i < current.Width; i++)
             {
@@ -323,6 +364,11 @@ namespace mmlab
             return l; 
         }
 
+        private void mergeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public Color ToRGB(double Hue, double Saturation, double Luminosity)
         {
             byte r, g, b;
@@ -361,6 +407,7 @@ namespace mmlab
             }
             return Color.FromArgb(r, g, b);
         }
+
         private static double ColorCalc(double c, double t1, double t2)
         {
 
