@@ -207,6 +207,35 @@ namespace mmlab
             picBoxMain.Image = current;
         }
 
+        private void loadImageToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            dialog = new OpenFileDialog();
+            dialog.Title = "Choose image file";
+            dialog.Filter = "JPG files|*.jpg|JPEG files|*.jpeg";
+            var res = dialog.ShowDialog();
+            if (res == DialogResult.Cancel)
+                return;
+
+            Bitmap temp; 
+            temp = new Bitmap(dialog.FileName);
+            temp = resizeImage(temp, current.Width, current.Height); 
+            for (int i = 0; i < current.Width; i++)
+            {
+                for (int j = 0; j < current.Height; j++)
+                {
+                   
+                    Color c1 = current.GetPixel(i, j);
+                    Color c2 = temp.GetPixel(i, j); 
+                    byte r = (byte)((c1.R) + c2.R / 2);
+                    byte g = (byte)((c1.G) + c2.G / 2);
+                    byte b = (byte)((c1.B) + c2.B / 2);
+                    Color newC = Color.FromArgb(r, g, b);
+                    current.SetPixel(i, j, newC);
+                }
+            }
+            picBoxMain.Image = current;
+        }
+
         private void greenImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (current == null)
@@ -221,6 +250,11 @@ namespace mmlab
                 }
             }
             picBoxMain.Image = current;
+        }
+
+        Bitmap resizeImage(Bitmap input, int w, int h)
+        {
+            return new Bitmap(input, w, h);
         }
     }
 }

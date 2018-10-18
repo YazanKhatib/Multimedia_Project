@@ -52,6 +52,8 @@
             this.flipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.horizontalFlipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalFlipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mergeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadImageToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.colorBox)).BeginInit();
@@ -81,7 +83,8 @@
             this.fileToolStripMenuItem,
             this.operationsToolStripMenuItem,
             this.colorToolStripMenuItem,
-            this.flipToolStripMenuItem});
+            this.flipToolStripMenuItem,
+            this.mergeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -254,6 +257,21 @@
             this.verticalFlipToolStripMenuItem.Text = "Vertical Flip";
             this.verticalFlipToolStripMenuItem.Click += new System.EventHandler(this.verticalFlipToolStripMenuItem_Click);
             // 
+            // mergeToolStripMenuItem
+            // 
+            this.mergeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadImageToolStripMenuItem1});
+            this.mergeToolStripMenuItem.Name = "mergeToolStripMenuItem";
+            this.mergeToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.mergeToolStripMenuItem.Text = "Merge";
+            // 
+            // loadImageToolStripMenuItem1
+            // 
+            this.loadImageToolStripMenuItem1.Name = "loadImageToolStripMenuItem1";
+            this.loadImageToolStripMenuItem1.Size = new System.Drawing.Size(216, 26);
+            this.loadImageToolStripMenuItem1.Text = "Load image";
+            this.loadImageToolStripMenuItem1.Click += new System.EventHandler(this.loadImageToolStripMenuItem1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -305,6 +323,8 @@
         private System.Windows.Forms.ToolStripMenuItem flipToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem horizontalFlipToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verticalFlipToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mergeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadImageToolStripMenuItem1;
     }
 }
 
