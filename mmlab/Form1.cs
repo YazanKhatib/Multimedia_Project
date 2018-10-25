@@ -594,9 +594,7 @@ namespace mmlab
             Marshal.Copy(data, 0, lockData.Scan0, data.Length);
             output.UnlockBits(lockData);
         }
-
-
-
+        
         private void picBoxMain_MouseDown(object sender, MouseEventArgs e)
         {
             mouseClicked = true;
@@ -733,6 +731,17 @@ namespace mmlab
             Pen drawLine = new Pen(Color.Red);
             drawLine.DashStyle = DashStyle.Dash;
             e.Graphics.DrawRectangle(drawLine, rectCropArea);
+        }
+
+        private void resizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            int temp = Form3.passedvalue;
+            int temp2 = Form3.passedvalue2;
+
+            current = resizeImage(current, temp, temp2);
+            picBoxMain.Image = current; 
         }
 
         private void picBoxMain_MouseClick(object sender, MouseEventArgs e)

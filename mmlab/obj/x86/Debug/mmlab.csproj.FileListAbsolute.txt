@@ -27,3 +27,4 @@ C:\Users\ASUS\Documents\GitHub\Multimedia_Project\mmlab\obj\x86\Debug\mmlab.cspr
 C:\Users\ASUS\Documents\GitHub\Multimedia_Project\mmlab\obj\x86\Debug\mmlab.csproj.CoreCompileInputs.cache
 C:\Users\ASUS\Documents\GitHub\Multimedia_Project\mmlab\obj\x86\Debug\mmlab.exe
 C:\Users\ASUS\Documents\GitHub\Multimedia_Project\mmlab\obj\x86\Debug\mmlab.pdb
+C:\Users\ASUS\Documents\GitHub\Multimedia_Project\mmlab\obj\x86\Debug\mmlab.Form3.resources
