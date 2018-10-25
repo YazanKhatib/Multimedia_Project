@@ -417,29 +417,6 @@ namespace mmlab
             Bitmap temp; 
             temp = new Bitmap(dialog2.FileName);
             temp = resizeImage(temp, current.Width, current.Height);
-
-
-            /* Vertical merge
-
-            int outputImageWidth = current.Width > temp.Width ? current.Width : temp.Width;
-
-            int outputImageHeight = current.Height + temp.Height + 1;
-
-            Bitmap outputImage = new Bitmap(outputImageWidth, outputImageHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-
-            using (Graphics graphics = Graphics.FromImage(outputImage))
-            {
-                graphics.DrawImage(current, new Rectangle(new Point(), current.Size),
-                    new Rectangle(new Point(), current.Size), GraphicsUnit.Pixel);
-                graphics.DrawImage(temp, new Rectangle(new Point(0, current.Height + 1), temp.Size),
-                    new Rectangle(new Point(), temp.Size), GraphicsUnit.Pixel);
-            }
-
-            picBoxMain.Image = outputImage;
-
-            */
-
-            /* Slow method
             for (int i = 0; i < current.Width; i++)
             {
                 for (int j = 0; j < current.Height; j++)
@@ -454,8 +431,7 @@ namespace mmlab
                     current.SetPixel(i, j, newC);
                 }
             }
-            picBoxMain.Image = current; */
-
+            picBoxMain.Image = current; 
         }
 
         Bitmap resizeImage(Bitmap input, int w, int h)
@@ -742,6 +718,71 @@ namespace mmlab
 
             current = resizeImage(current, temp, temp2);
             picBoxMain.Image = current; 
+        }
+
+        private void verticalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (current == null)
+                return; 
+            dialog2 = new OpenFileDialog();
+            dialog2.Title = "Choose image file";
+            dialog2.Filter = "JPG files|*.jpg|JPEG files|*.jpeg";
+            var res = dialog2.ShowDialog();
+            if (res == DialogResult.Cancel)
+                return;
+
+            Bitmap temp;
+            temp = new Bitmap(dialog2.FileName);
+            temp = resizeImage(temp, current.Width, current.Height);
+
+
+            int outputImageWidth = current.Width > temp.Width ? current.Width : temp.Width;
+
+            int outputImageHeight = current.Height + temp.Height + 1;
+
+            Bitmap outputImage = new Bitmap(outputImageWidth, outputImageHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            using (Graphics graphics = Graphics.FromImage(outputImage))
+            {
+                graphics.DrawImage(current, new Rectangle(new Point(), current.Size),
+                    new Rectangle(new Point(), current.Size), GraphicsUnit.Pixel);
+                graphics.DrawImage(temp, new Rectangle(new Point(0, current.Height + 1), temp.Size),
+                    new Rectangle(new Point(), temp.Size), GraphicsUnit.Pixel);
+            }
+
+            picBoxMain.Image = outputImage;
+        }
+
+        private void horizontalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (current == null)
+                return; 
+            dialog2 = new OpenFileDialog();
+            dialog2.Title = "Choose image file";
+            dialog2.Filter = "JPG files|*.jpg|JPEG files|*.jpeg";
+            var res = dialog2.ShowDialog();
+            if (res == DialogResult.Cancel)
+                return;
+
+            Bitmap temp;
+            temp = new Bitmap(dialog2.FileName);
+            temp = resizeImage(temp, current.Width, current.Height);
+
+            int outputImageWidth = current.Width + temp.Width + 1;
+
+            int outputImageHeight = current.Height > temp.Height ? current.Height : temp.Height;
+
+            Bitmap outputImage = new Bitmap(outputImageWidth, outputImageHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            using (Graphics graphics = Graphics.FromImage(outputImage))
+            {
+                graphics.DrawImage(current, new Rectangle(new Point(), current.Size),
+                    new Rectangle(new Point(), current.Size), GraphicsUnit.Pixel);
+                graphics.DrawImage(temp, new Rectangle(new Point(current.Width + 1, 0), temp.Size),
+                    new Rectangle(new Point(), temp.Size), GraphicsUnit.Pixel);
+            }
+
+            picBoxMain.Image = outputImage;
         }
 
         private void picBoxMain_MouseClick(object sender, MouseEventArgs e)
