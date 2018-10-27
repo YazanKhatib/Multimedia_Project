@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -351,58 +352,13 @@ namespace mmlab
         }
 
         private void horizontalFlipToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-            if (current == null)
-                return;
-            for (int i = 0; i < current.Height; i++)
-            {
-                for (int j = 0; j < current.Width/2; j++)
-                {
-                    if (j == 0) continue;
-                    Color c = current.GetPixel(j,i);
-                    Color cc = current.GetPixel(current.Width - j,i); 
-                    current.SetPixel(current.Width - j, i, c);
-                    current.SetPixel(j, i, cc);
-                }
-            }
-
-            picBoxMain.Image = current;
-
-            
-            /*
-            if (current == null)
-                return;
-            current.RotateFlip(RotateFlipType.Rotate180FlipY);
-            picBoxMain.Image = current;
-            
-            */
+        { 
 
         }
 
         private void verticalFlipToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (current == null)
-                return;
-            for (int i = 0; i < current.Width; i++)
-            {
-                for (int j = 0; j < current.Height / 2; j++)
-                {
-                    if (j == 0) continue;
-                    Color c = current.GetPixel(i, j);
-                    Color cc = current.GetPixel(i, current.Height - j);
-                    current.SetPixel(i, current.Height - j, c);
-                    current.SetPixel(i, j, cc);
-                }
-            }
-
-            picBoxMain.Image = current;
-            /*
-            if (current == null)
-                return;
-            current.RotateFlip(RotateFlipType.Rotate180FlipX);
-            picBoxMain.Image = current;
-            */
+           
         }
 
         private void loadImageToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -783,6 +739,124 @@ namespace mmlab
             }
 
             picBoxMain.Image = outputImage;
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (current == null)
+                return;
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "JPG file|*.jpg";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+                return;
+            ImageCodecInfo[] info = ImageCodecInfo.GetImageEncoders();
+            ImageCodecInfo jpegCodec = info.Single(i => i.MimeType == "image/jpeg");
+            EncoderParameter parameter = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 10L);
+            EncoderParameters param = new EncoderParameters(1);
+            param.Param[0] = parameter;
+            current.Save(dialog.FileName, jpegCodec, param);
+        }
+
+        private void quizToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (current == null)
+                return;
+            Form4 f4 = new Form4();
+            f4.ShowDialog();
+            double alpha = Form4.passedvalue;
+            int prl;
+            byte[] data = img2array(current, out prl);
+            for (int i = 0; i < current.Height; i++)
+            {
+                int ls = i * prl;
+                for (int j = 0; j < prl; j += 3)
+                {
+                    double r = Convert.ToDouble(data[ls + j]) / 255f;
+                    double g = Convert.ToDouble(data[ls + j + 1]) / 255f;
+                    double b = Convert.ToDouble(data[ls + j + 2]) / 255f;
+
+                    data[ls + j] = Convert.ToByte(Math.Pow(r, alpha) * 255);
+                    data[ls + j + 1] = Convert.ToByte(Math.Pow(g, alpha) * 255);
+                    data[ls + j + 2] = Convert.ToByte(Math.Pow(b, alpha) * 255);
+                }
+            }
+            array2img(current, data);
+            picBoxMain.Image = current;
+        }
+
+        private void horizontalToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            /*
+            if (current == null)
+                return;
+            for (int i = 0; i < current.Height; i++)
+            {
+                for (int j = 0; j < current.Width/2; j++)
+                {
+                    if (j == 0) continue;
+                    Color c = current.GetPixel(j,i);
+                    Color cc = current.GetPixel(current.Width - j,i); 
+                    current.SetPixel(current.Width - j, i, c);
+                    current.SetPixel(j, i, cc);
+                }
+            }
+
+            picBoxMain.Image = current;
+            */
+
+
+            if (current == null)
+                return;
+            current.RotateFlip(RotateFlipType.Rotate180FlipY);
+            picBoxMain.Image = current;
+        }
+
+        private void verticalToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            /*
+          if (current == null)
+              return;
+          for (int i = 0; i < current.Width; i++)
+          {
+              for (int j = 0; j < current.Height / 2; j++)
+              {
+                  if (j == 0) continue;
+                  Color c = current.GetPixel(i, j);
+                  Color cc = current.GetPixel(i, current.Height - j);
+                  current.SetPixel(i, current.Height - j, c);
+                  current.SetPixel(i, j, cc);
+              }
+          }
+
+          picBoxMain.Image = current; */
+
+
+            if (current == null)
+                return;
+            current.RotateFlip(RotateFlipType.Rotate180FlipX);
+            picBoxMain.Image = current;
+        }
+
+        private void rotateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form5 f5 = new Form5();
+            f5.ShowDialog();
+            double angle = Form5.passedvalue;
+            //create a new empty bitmap to hold rotated image
+            Bitmap returnBitmap = new Bitmap(b.Width, b.Height);
+            //make a graphics object from the empty bitmap
+            using (Graphics g = Graphics.FromImage(returnBitmap))
+            {
+                //move rotation point to center of image
+                g.TranslateTransform((float)b.Width / 2, (float)b.Height / 2);
+                //rotate
+                g.RotateTransform((float)angle);
+                //move image back
+                g.TranslateTransform(-(float)b.Width / 2, -(float)b.Height / 2);
+                //draw passed in image onto graphics object
+                g.DrawImage(b, new Point(0, 0));
+            }
+            picBoxMain.Image = returnBitmap; 
         }
 
         private void picBoxMain_MouseClick(object sender, MouseEventArgs e)
