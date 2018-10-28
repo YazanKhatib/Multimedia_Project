@@ -745,13 +745,17 @@ namespace mmlab
         {
             if (current == null)
                 return;
+            Form6 f6 = new Form6();
+            f6.ShowDialog();
+            int quality = Convert.ToInt32(Form6.passedvalue);
+
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Filter = "JPG file|*.jpg";
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
                 return;
             ImageCodecInfo[] info = ImageCodecInfo.GetImageEncoders();
             ImageCodecInfo jpegCodec = info.Single(i => i.MimeType == "image/jpeg");
-            EncoderParameter parameter = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 10L);
+            EncoderParameter parameter = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, quality);
             EncoderParameters param = new EncoderParameters(1);
             param.Param[0] = parameter;
             current.Save(dialog.FileName, jpegCodec, param);
@@ -842,21 +846,29 @@ namespace mmlab
             Form5 f5 = new Form5();
             f5.ShowDialog();
             double angle = Form5.passedvalue;
-            //create a new empty bitmap to hold rotated image
-            Bitmap returnBitmap = new Bitmap(b.Width, b.Height);
-            //make a graphics object from the empty bitmap
-            using (Graphics g = Graphics.FromImage(returnBitmap))
+            
+            Bitmap returnBitmap = new Bitmap(current.Width, current.Height);
+
+            
+            using (Graphics g = Graphics.FromImage(current))
             {
-                //move rotation point to center of image
-                g.TranslateTransform((float)b.Width / 2, (float)b.Height / 2);
-                //rotate
+                
+                g.TranslateTransform((float)current.Width / 2, (float)current.Height / 2);
+                
                 g.RotateTransform((float)angle);
-                //move image back
-                g.TranslateTransform(-(float)b.Width / 2, -(float)b.Height / 2);
-                //draw passed in image onto graphics object
-                g.DrawImage(b, new Point(0, 0));
+                
+                g.TranslateTransform(-(float)current.Width / 2, -(float)current.Height / 2);
+                
+                g.DrawImage(current, new Point(0, 0));
             }
-            picBoxMain.Image = returnBitmap; 
+            //   current = returnBitmap;
+          
+            picBoxMain.Image = current;
+        }
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void picBoxMain_MouseClick(object sender, MouseEventArgs e)
